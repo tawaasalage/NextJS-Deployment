@@ -18,14 +18,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt", maxAge: 3600 },
   callbacks: {
     async jwt({ token, account }) {
-      token.role = "user";
+      if (account) {
+        token.provider = account.provider; // "google" or "github"
+      }
 
-      console.log("account", token, account);
-
-      if (token?.email === "techwavedy@gmail.com") {
+      if (token?.provider === "google") {
         token.role = "admin";
       }
-      if (account?.provider === "google") {
+      if (account?.provider === "github") {
         token.role = "user";
       }
 
