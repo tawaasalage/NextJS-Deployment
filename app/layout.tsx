@@ -14,6 +14,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header className="site-header">
           <Link href="/">Home</Link>
+          <div>
+            <Link href="/admin" className="button">
+              Admin
+            </Link>
+            <Link href="/user" className="button">
+              User
+            </Link>
+          </div>
         </header>
         <main>{children}</main>
       </body>
